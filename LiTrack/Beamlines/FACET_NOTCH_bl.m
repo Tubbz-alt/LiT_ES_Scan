@@ -61,6 +61,15 @@
   LI20_U5666 = 0;
   no_quad = 1;
 
+  % set beam init params
+  init_param.Nesim = PARAM.INIT.NESIM;
+  init_param.Npart = PARAM.INIT.NPART;
+  init_param.E0    = PARAM.ENRG.E0;
+  init_param.sigd0 = PARAM.INIT.SIGD0;
+  init_param.sigz0 = PARAM.INIT.SIGZ0;
+  init_param.asym  = PARAM.INIT.ASYM;
+  init_param.cut   = PARAM.INIT.CUT;
+
 beamline = [
        11		NRTL_ampl      NRTL_phas     sband      fb_off      NRTL_leff     % Compressor cavity AMPL DR13 13 VDES
        26	    NRTL_ELO       NRTL_EHI      0          0           0             % Approximate energy acceptance of NRTL

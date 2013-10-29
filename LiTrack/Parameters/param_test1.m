@@ -55,13 +55,13 @@ PARAM.LTWO.GAIN = (PARAM.ENRG.E2 - PARAM.ENRG.E1)/cosd(PARAM.LTWO.PHAS); % Energ
 
 % LI20 bunch compressor
 PARAM.LI20.NLO   = -0.005;  % notch low
-PARAM.LI20.NHI   = 0.010;   % notch hi
+PARAM.LI20.NHI   = 0.000;   % notch hi
 PARAM.LI20.R56   = 0.0100;  % Sector 20 chicane R56 (m)
-PARAM.LI20.T566  = 0.100;   % Sector 20 chicane T566 (m) % = 100 mm for R56 = 5mm from YS
+PARAM.LI20.T566  = 0.281;   % Sector 20 chicane T566 (m) % = 100 mm for R56 = 5mm from YS
 PARAM.LI20.ISR   = 0.8E-5;  % ISR energy spread from bends
 PARAM.LI20.ELO   = -0.035;  % RTL lower momentum cut (GeV)
 PARAM.LI20.EHI   = 0.035;   % RTL upper momentum cut (GeV)
-PARAM.LI20.R16   = 130;     % Dispersion at YAG
+PARAM.LI20.R16   = 120;     % Dispersion at YAG
 PARAM.LI20.T166  = 0.00;    % Second order dispersion at YAG
 PARAM.LI20.BETA  = 4.0;     % Beta function at YAG
 PARAM.LI20.EMIT  = 100e-6;  % Emittance in S20
