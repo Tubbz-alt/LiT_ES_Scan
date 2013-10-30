@@ -27,7 +27,7 @@ init_beam = 1;
 % run LiT
 tic;
 out = LiT(beamline,init_beam,init_param,PARAM.SIMU.BIN,0);
-display(['LiTrack took ' toc ' seconds to run.']);
+display(['LiTrack took ' num2str(toc) ' seconds to run.']);
 
 % plot phase space
 plot_ps(out.BEAM,PARAM.SIMU.BIN,1,0);
