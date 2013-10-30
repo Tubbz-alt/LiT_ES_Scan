@@ -23,8 +23,10 @@ function x = init_Z(N,xsig,asym,cut)
 f1 = 1 + asym;
 f2 = 1 - asym;
 
-N1 = round(N*f1/4/erfn(cut));		% boost N1 to accomodate cuts
-N2 = round(N*f2/4/erfn(cut));		% boost N2 to accomodate cuts
+P = erf(cut/sqrt(2))/2;
+
+N1 = round(N*f1/4/P);		% boost N1 to accomodate cuts
+N2 = round(N*f2/4/P);		% boost N2 to accomodate cuts
 
 x1      = f1*xsig*randn(2*N1,1);	% generate a gaussian distribution + offset
 cut_ind = x1<0 & x1>(-cut*xsig*f1);	% eliminate positive values and cuts
