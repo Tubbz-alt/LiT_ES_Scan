@@ -1,5 +1,3 @@
-addpath(genpath('../../LiT_ES_Scan/'));
-
 % load wake
 global wake;
 wake = load('slac.dat');
