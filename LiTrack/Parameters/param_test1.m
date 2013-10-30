@@ -55,7 +55,7 @@ PARAM.LTWO.GAIN = (PARAM.ENRG.E2 - PARAM.ENRG.E1)/cosd(PARAM.LTWO.PHAS); % Energ
 
 % LI20 bunch compressor
 PARAM.LI20.NLO   = -0.005;  % notch low
-PARAM.LI20.NHI   = 0.000;   % notch hi
+PARAM.LI20.NHI   = 0.004;   % notch hi
 PARAM.LI20.R56   = 0.0100;  % Sector 20 chicane R56 (m)
 PARAM.LI20.T566  = 0.281;   % Sector 20 chicane T566 (m) % = 100 mm for R56 = 5mm from YS
 PARAM.LI20.ISR   = 0.8E-5;  % ISR energy spread from bends

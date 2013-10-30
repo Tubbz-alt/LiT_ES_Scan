@@ -1,46 +1,23 @@
 function plot_ps(beam,Nbin,fig_num,wait,yag_axis,yag_spec,tcav_axis,tcav_spec)
 
-lit_z = 1e6*beam(:,1);
-lit_d = 100*(beam(:,2)-mean(beam(:,2)))/mean(beam(:,2));
-
-[nz,zb] = hist(lit_z,Nbin);
-[ne,eb] = hist(lit_d,Nbin);
-
 if nargin == 8
-    
-    [~,lit_ind] = max(nz);
-    lit_z = lit_z - zb(lit_ind);
-
-    [~,dat_ind] = max(tcav_spec);
-    tcav_axis = tcav_axis - tcav_axis(dat_ind);
-    
-    [nz,zb] = hist(lit_z,tcav_axis);
+    [nz,zb] = hist(beam(:,1),tcav_axis);
     nz(1) = 0;
     nz(end) = 0;
-    lit_zmax = max(nz);
-    dat_zmax = max(tcav_spec);
-    nz = (dat_zmax/lit_zmax)*nz;
-
-    [ne,eb] = hist(lit_d,yag_axis);
+    [ne,eb] = hist(beam(:,2),yag_axis);
     ne(1) = 0;
     ne(end) = 0;
-    lit_emax = max(ne);
-    dat_emax = max(yag_spec);
-    ne = (dat_emax/lit_emax)*ne;
-
 elseif nargin == 6
-
-    [nz,zb] = hist(lit_z,Nbin);
-    [ne,eb] = hist(lit_d,yag_axis);
+    [nz,zb] = hist(beam(:,1),Nbin);
+    [ne,eb] = hist(beam(:,2),yag_axis);
     ne(1) = 0;
     ne(end) = 0;
-    lit_emax = max(ne);
-    dat_emax = max(yag_spec);
-    ne = (dat_emax/lit_emax)*ne;
-
+else
+    [nz,zb] = hist(beam(:,1),Nbin);
+    [ne,eb] = hist(beam(:,2),Nbin);
 end
 
-ps = hist2(lit_z,lit_d,zb,eb);
+ps = hist2(beam(:,1),beam(:,2),zb,eb);
 
 figure(fig_num);
 
