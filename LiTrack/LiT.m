@@ -61,6 +61,7 @@ end % end loop over all beamline section
 if nargout == 1
 
       LT_OUTPUT.BEAM = beam;
+      LT_OUTPUT.QP   = Qp;
 
 %     LT_OUTPUT.Z.DIST = zposj;
 %     LT_OUTPUT.Z.HIST = HIST_Z;
