@@ -4,3 +4,4 @@ java.opts
 *~
 *.mat
 .DS_Store
+/scratch
