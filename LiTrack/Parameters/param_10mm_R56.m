@@ -17,7 +17,7 @@ PARAM.INIT.SIGD0 = 7.00E-4; % RMS energy spread
 PARAM.INIT.Z0BAR = 0;       % Z offset
 PARAM.INIT.D0BAR = 0;       % Energy offset
 PARAM.INIT.NESIM = 2E5;     % Number of simulated macro particles
-PARAM.INIT.NPART = 2.00E10; % Number of electrons per bunch
+PARAM.INIT.NPART = 2.12E10; % Number of electrons per bunch
 PARAM.INIT.ASYM  = -0.185;  % The Holtzapple skew
 PARAM.INIT.TAIL  = 0;       % Not sure what this is
 PARAM.INIT.CUT   = 6;       % Not sure what this is
@@ -35,7 +35,7 @@ PARAM.NRTL.EHI   = 0.0300;  % RTL upper momentum cut (GeV)
 PARAM.LONE.LEFF  = 809.5;   % Length of LI02-LI10 (m)
 PARAM.LONE.CHRP  = 3.0536;  % chirp in 2-10 (GeV)
 PARAM.LONE.RAMP  = 0.00;    % Ramped phase
-PARAM.LONE.DECK  = -20.70;  % Staggered chirp
+PARAM.LONE.DECK  = -21.50;  % Staggered chirp
 PARAM.LONE.PHAS  = PARAM.LONE.RAMP+PARAM.LONE.DECK;  % Total phase
 PARAM.LONE.FBAM  = 0.235;   % feedback amplitude at S10 (GV)
 PARAM.LONE.GAIN  = (PARAM.ENRG.E1 - PARAM.ENRG.E0)/cosd(PARAM.LONE.PHAS); % Energy gain
@@ -56,8 +56,8 @@ PARAM.LTWO.GAIN = (PARAM.ENRG.E2 - PARAM.ENRG.E1)/cosd(PARAM.LTWO.PHAS); % Energ
 % LI20 bunch compressor
 PARAM.LI20.NLO   = -0.000;  % notch low
 PARAM.LI20.NHI   = 0.000;   % notch hi
-PARAM.LI20.R56   = 0.0050;  % Sector 20 chicane R56 (m)
-PARAM.LI20.T566  = 0.100;   % Sector 20 chicane T566 (m) % = 100 mm for R56 = 5mm from YS
+PARAM.LI20.R56   = 0.0100;  % Sector 20 chicane R56 (m)
+PARAM.LI20.T566  = 0.281;   % Sector 20 chicane T566 (m) % = 100 mm for R56 = 5mm from YS
 PARAM.LI20.ISR   = 0.8E-5;  % ISR energy spread from bends
 PARAM.LI20.ELO   = -0.035;  % RTL lower momentum cut (GeV)
 PARAM.LI20.EHI   = 0.035;   % RTL upper momentum cut (GeV)
