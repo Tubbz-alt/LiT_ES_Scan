@@ -18,7 +18,7 @@ PARAM.INIT.Z0BAR = 0;       % Z offset
 PARAM.INIT.D0BAR = 0;       % Energy offset
 PARAM.INIT.NESIM = 2E5;     % Number of simulated macro particles
 PARAM.INIT.NPART = 2.00E10; % Number of electrons per bunch
-PARAM.INIT.ASYM  = -0.185;  % The Holtzapple skew
+PARAM.INIT.ASYM  = -0.210;  % The Holtzapple skew
 PARAM.INIT.TAIL  = 0;       % Not sure what this is
 PARAM.INIT.CUT   = 6;       % Not sure what this is
 
@@ -43,8 +43,8 @@ PARAM.LONE.GAIN  = (PARAM.ENRG.E1 - PARAM.ENRG.E0)/cosd(PARAM.LONE.PHAS); % Ener
 % LI10 bunch compressor
 PARAM.LI10.R56   = -0.075786;% Sector 10 chicane R56 (m)
 PARAM.LI10.ISR   = 5.9E-5;   % ISR energy spread from bends
-PARAM.LI10.ELO   = -0.040;   % low energy cut
-PARAM.LI10.EHI   = 0.040;    % high energy cut
+PARAM.LI10.ELO   = -0.030;   % low energy cut
+PARAM.LI10.EHI   = 0.030;    % high energy cut
 
 % LI11-LI19 acceleration
 PARAM.LTWO.LEFF  = 848;     % Length of LI02-LI10 (m)
@@ -59,9 +59,9 @@ PARAM.LI20.NHI   = 0.000;   % notch hi
 PARAM.LI20.R56   = 0.0050;  % Sector 20 chicane R56 (m)
 PARAM.LI20.T566  = 0.100;   % Sector 20 chicane T566 (m) % = 100 mm for R56 = 5mm from YS
 PARAM.LI20.ISR   = 0.8E-5;  % ISR energy spread from bends
-PARAM.LI20.ELO   = -0.035;  % RTL lower momentum cut (GeV)
-PARAM.LI20.EHI   = 0.035;   % RTL upper momentum cut (GeV)
-PARAM.LI20.R16   = 120;     % Dispersion at YAG
+PARAM.LI20.ELO   = -0.025;  % RTL lower momentum cut (GeV)
+PARAM.LI20.EHI   = 0.025;   % RTL upper momentum cut (GeV)
+PARAM.LI20.R16   = 107;     % Dispersion at YAG
 PARAM.LI20.T166  = 0.00;    % Second order dispersion at YAG
 PARAM.LI20.BETA  = 4.0;     % Beta function at YAG
 PARAM.LI20.EMIT  = 100e-6;  % Emittance in S20
