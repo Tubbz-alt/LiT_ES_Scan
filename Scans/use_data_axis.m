@@ -1,4 +1,4 @@
-function [profile, spectrum, yag_spec, residual] = compare_spectra(beam,Nbin,yag_axis,yag_spec,gaussFilter)
+function [profile, spectrum] = use_data_axis(LiT_struct,Nbin,yag_axis,gaussFilter)
 % [z_ax,lit_z_prof,e_ax,lit_e_prof,yag_spec] = comp_data_litrack(beam,Nbin,yag_axis,yag_spec)
 %
 % This function compares data with LiTrack simulations.
@@ -21,6 +21,8 @@ function [profile, spectrum, yag_spec, residual] = compare_spectra(beam,Nbin,yag
 %   yag_spec:   Normalized YAG spectrum
 %   residual:   Difference between LiTrack and data
 
+beam = LiT_struct.BEAM;
+
 % Convert LiTrack beam from [m,GeV] to [um,%]
 lit_z = 1e6*beam(:,1);
 lit_d = 100*(beam(:,2)-mean(beam(:,2)))/mean(beam(:,2));
@@ -31,20 +33,22 @@ lit_d = 100*(beam(:,2)-mean(beam(:,2)))/mean(beam(:,2));
 ne(1) = 0;
 ne(end) = 0;
 
-if nargin > 4
+% load SI_constants
+SI_consts;
+
+% Convert z-distribution to current
+dz = 1e-6*(zb(2)-zb(1)); % bin spacing [m]
+qb = LiT_struct.QP*nz*SI_e; % charge/bin [C]
+I  = qb*SI_c/(1000*dz); % current [kA]
+
+if nargin > 3
     
     ne = conv(ne, gaussFilter, 'same');
 end
-
-% lit_emax = max(ne);
-% dat_emax = max(yag_spec);
-% yag_spec = (lit_emax/dat_emax)*yag_spec;
 
 % normalize to 1
 ne = ne/sum(ne);
 
 % Copy results
-profile = [zb' nz'];
+profile = [zb' I'];
 spectrum = [eb' ne'];
-
-residual = sum((yag_spec - ne).^2);

@@ -25,7 +25,7 @@ end
 % n_el = number of beamline elements
 [n_el,~] = size(beamline);		            
 
-if show_all; plot_ps(beam,Nbin,1,1); end;
+if show_all; ps.BEAM = beam; ps.QP = Qp; plot_ps(ps,Nbin,0,1,1,0); end;
 
 % Get orders from beamline
 for j  = 1:n_el					
@@ -54,35 +54,9 @@ for j  = 1:n_el
           
   end
       
-  if show_all; plot_ps(beam,Nbin,1,1); end
+  if show_all; ps.BEAM = beam; ps.QP = Qp; plot_ps(ps,Nbin,0,1,1,0); end
   
 end % end loop over all beamline section
 
-if nargout == 1
-
-      LT_OUTPUT.BEAM = beam;
-      LT_OUTPUT.QP   = Qp;
-
-%     LT_OUTPUT.Z.DIST = zposj;
-%     LT_OUTPUT.Z.HIST = HIST_Z;
-%     LT_OUTPUT.Z.AXIS = AXIS_Z;
-%     %LT_OUTPUT.Z.AVG  = z_barj;
-%     LT_OUTPUT.Z.FWHM = ZFWmmj;
-%     if gzfit
-%         LT_OUTPUT.Z.SIG  = sigzGj;
-%         LT_OUTPUT.I.SIG  = I_pkfj;
-%     end
-% 
-%     LT_OUTPUT.E.DIST = dE_Ej;
-%     LT_OUTPUT.E.HIST = HIST_D;
-%     LT_OUTPUT.E.AXIS = AXIS_D;
-%     LT_OUTPUT.E.AVG  = Ebarj;
-%     LT_OUTPUT.E.FWHM = dFWpctj;
-%     if gdfit
-%         LT_OUTPUT.E.SIG  = sigEGj;
-%     end
-% 
-%     LT_OUTPUT.I.PART = fcutj;
-%     LT_OUTPUT.I.PEAK = I_pkj;
-
-end
+LT_OUTPUT.BEAM = beam;
+LT_OUTPUT.QP = Qp;

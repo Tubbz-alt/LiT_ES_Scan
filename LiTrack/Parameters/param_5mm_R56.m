@@ -20,7 +20,7 @@ PARAM.INIT.NESIM = 2E5;     % Number of simulated macro particles
 PARAM.INIT.NPART = 2.00E10; % Number of electrons per bunch
 PARAM.INIT.ASYM  = -0.210;  % The Holtzapple skew
 PARAM.INIT.TAIL  = 0;       % Not sure what this is
-PARAM.INIT.CUT   = 6;       % Not sure what this is
+PARAM.INIT.CUT   = 5;       % Not sure what this is
 
 % NRTL bunch compressor
 PARAM.NRTL.AMPL  = 0.0405;  % RTL compressor ampl (MV)
