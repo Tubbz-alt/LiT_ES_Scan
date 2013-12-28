@@ -1,5 +1,5 @@
-function LT_OUTPUT = LiT(beamline,init_beam,init_param,Nbin,show_all)
-%function LT_OUTPUT = LiTrackOpt(beamline,initialize_beam,init_params)
+function LT_OUTPUT = LiT(beamline,init_beam,init_param,Nbin,show_all,save_img,save_dir)
+%function LT_OUTPUT = LiT(beamline,initialize_beam,init_params,show_all,save_img,save_dir)
 %
 %
 %  INPUTS:
@@ -54,7 +54,14 @@ for j  = 1:n_el
           
   end
       
-  if show_all; ps.BEAM = beam; ps.QP = Qp; plot_ps(ps,Nbin,0,1,1,0); end
+  if show_all 
+      ps.BEAM = beam;
+      ps.QP = Qp;
+      plot_ps(ps,Nbin,0,1,1,0);
+      if save_img
+          saveas(gcf,[save_dir 'step_' num2str(j,'%02d') '.eps'],'epsc');
+      end
+  end
   
 end % end loop over all beamline section
 
