@@ -25,7 +25,14 @@ end
 % n_el = number of beamline elements
 [n_el,~] = size(beamline);		            
 
-if show_all; ps.BEAM = beam; ps.QP = Qp; plot_ps(ps,Nbin,0,1,1,0); end;
+if show_all
+    ps.BEAM = beam;
+    ps.QP = Qp;
+    plot_ps(ps,Nbin,1,1,0,0);
+    if save_img
+        saveas(gcf,[save_dir 'step_00.eps'],'epsc');
+    end
+end
 
 % Get orders from beamline
 for j  = 1:n_el					
@@ -57,7 +64,7 @@ for j  = 1:n_el
   if show_all 
       ps.BEAM = beam;
       ps.QP = Qp;
-      plot_ps(ps,Nbin,0,1,1,0);
+      plot_ps(ps,Nbin,1,1,0,0);
       if save_img
           saveas(gcf,[save_dir 'step_' num2str(j,'%02d') '.eps'],'epsc');
       end

@@ -34,12 +34,12 @@ figure(fig_num);
 subplot(2,2,1);
 plot(ne,eb,'b','linewidth',2);
 if normalize || use_data 
-    ylabel('\delta [%]','fontsize',14);
+    ylabel('\delta [%]','fontsize',16);
     if normalize
-        xlabel('N/bin','fontsize',14);
+        xlabel('N/bin','fontsize',16);
     end
 else
-    ylabel('Energy [GeV]','fontsize',14);
+    ylabel('Energy [GeV]','fontsize',16);
 end
 if use_data
     hold on;
@@ -51,22 +51,22 @@ axis tight;
 subplot(2,2,2);
 pcolor(zb,eb,ps'); shading flat;
 if normalize || use_data 
-    ylabel('\delta [%]','fontsize',14);
-    xlabel('Z [\mum]','fontsize',14);
+    ylabel('\delta [%]','fontsize',16);
+    xlabel('Z [\mum]','fontsize',16);
 else
-    ylabel('Energy [GeV]','fontsize',14);
-    xlabel('Z [m]','fontsize',14);
+    ylabel('Energy [GeV]','fontsize',16);
+    xlabel('Z [m]','fontsize',16);
 end
 
 subplot(2,2,4);
 plot(zb,nz,'b','linewidth',2);
 if normalize || use_data == 2
-    xlabel('Z [\mum]','fontsize',14);
+    xlabel('Z [\mum]','fontsize',16);
     if normalize
-        ylabel('I [kA]','fontsize',14);
+        ylabel('I [kA]','fontsize',16);
     end
 else
-    xlabel('Z [m]','fontsize',14);
+    xlabel('Z [m]','fontsize',16);
 end
 if use_data == 2
     hold on;
