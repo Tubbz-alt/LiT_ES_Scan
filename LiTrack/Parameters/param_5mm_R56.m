@@ -12,18 +12,18 @@ PARAM.ENRG.E1    = 9.0;     % Energy at S10 (GeV)
 PARAM.ENRG.E2    = 20.35;   % Energy at S20 (GeV)
 
 % Beam initial conditions
-PARAM.INIT.SIGZ0 = 6.00E-3; % RMS bunch length (m)
+PARAM.INIT.SIGZ0 = 5.60E-3; % RMS bunch length (m)
 PARAM.INIT.SIGD0 = 7.00E-4; % RMS energy spread
 PARAM.INIT.Z0BAR = 0;       % Z offset
 PARAM.INIT.D0BAR = 0;       % Energy offset
 PARAM.INIT.NESIM = 2E5;     % Number of simulated macro particles
 PARAM.INIT.NPART = 2.00E10; % Number of electrons per bunch
-PARAM.INIT.ASYM  = -0.210;  % The Holtzapple skew
+PARAM.INIT.ASYM  = -0.200;  % The Holtzapple skew
 PARAM.INIT.TAIL  = 0;       % Not sure what this is
 PARAM.INIT.CUT   = 5;       % Not sure what this is
 
 % NRTL bunch compressor
-PARAM.NRTL.AMPL  = 0.0405;  % RTL compressor ampl (MV)
+PARAM.NRTL.AMPL  = 0.04087; % RTL compressor ampl (MV)
 PARAM.NRTL.PHAS  = 90.00;   % RTL compressor phase (deg)
 PARAM.NRTL.LEFF  = 2.1694;  % RTL cavity length (m)
 PARAM.NRTL.R56   = 0.6026;  % RTL chicane R56 (m)
@@ -35,7 +35,7 @@ PARAM.NRTL.EHI   = 0.0300;  % RTL upper momentum cut (GeV)
 PARAM.LONE.LEFF  = 809.5;   % Length of LI02-LI10 (m)
 PARAM.LONE.CHRP  = 3.0536;  % chirp in 2-10 (GeV)
 PARAM.LONE.RAMP  = 0.00;    % Ramped phase
-PARAM.LONE.DECK  = -20.70;  % Staggered chirp
+PARAM.LONE.DECK  = -20.64;  % Staggered chirp
 PARAM.LONE.PHAS  = PARAM.LONE.RAMP+PARAM.LONE.DECK;  % Total phase
 PARAM.LONE.FBAM  = 0.235;   % feedback amplitude at S10 (GV)
 PARAM.LONE.GAIN  = (PARAM.ENRG.E1 - PARAM.ENRG.E0)/cosd(PARAM.LONE.PHAS); % Energy gain

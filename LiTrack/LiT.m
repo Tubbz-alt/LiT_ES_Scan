@@ -1,4 +1,4 @@
-function LT_OUTPUT = LiT(beamline,init_beam,init_param,Nbin,show_all,save_img,save_dir)
+function LT_OUTPUT = LiT(beamline,init_beam,init_param,Nbin,show_all,save_img,save_dir,store_all)
 %function LT_OUTPUT = LiT(beamline,initialize_beam,init_params,show_all,save_img,save_dir)
 %
 %
@@ -23,7 +23,16 @@ if init_beam
 end
 
 % n_el = number of beamline elements
-[n_el,~] = size(beamline);		            
+[n_el,~] = size(beamline);
+if nargin==8 && store_all
+    evolution = zeros(init_param.Nesim,2,n_el+1);
+    evolution(:,:,1) = beam;
+    NBs = zeros(1,n_el+1);
+    NBs(1) = Nb;
+else
+    evolution = [];
+    NBs = [];
+end
 
 if show_all
     ps.BEAM = beam;
@@ -43,21 +52,27 @@ for j  = 1:n_el
       
       case 6
           [beam, Nb] = bunch_compressor(beam,Nb,beamline(j,:));
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
           
       case 11
           [beam, Nb] = rf_acceleration(beam,Nb,Qp,Nbin,beamline(j,:));
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
           
       case 22
           [beam, Nb] = ISR_energySpread(beam,Nb,beamline(j,:));
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
           
       case 26
           [beam, Nb] = energy_aperture(beam,Nb,beamline(j,:));
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
           
       case 28
           [beam, Nb] = notch_collimator(beam,Nb,beamline(j,:));
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
           
       case 37
           [beam, Nb] = cut_beam_tails(beam,Nb,beamline(j,:));
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
           
   end
       
@@ -74,3 +89,5 @@ end % end loop over all beamline section
 
 LT_OUTPUT.BEAM = beam;
 LT_OUTPUT.QP = Qp;
+LT_OUTPUT.EVO = evolution;
+LT_OUTPUT.Nb = NBs;
