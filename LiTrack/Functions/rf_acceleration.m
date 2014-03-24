@@ -1,4 +1,4 @@
-function [beam_out, Nb] = rf_acceleration(beam_in,Nb,Qp,Nbin,params)
+function [beam_out, Nb, wake_out, rf_out] = rf_acceleration(beam_in,Nb,Qp,Nbin,params)
 
 SI_consts;
 
@@ -17,6 +17,7 @@ Lacc  = params(6);
 [dE_wake,zc_wake] = calc_wake(Z,Lacc,Qp,Nbin);  % convolve wake function with beam in Nbin histogram
 int_wake = interp1(zc_wake,dE_wake,Z,'linear');	% inerpolate wake response onto particles
 wakeloss = 1E-3*mean(int_wake);                 % mean wake loss [GeV]
+wake_out = [zc_wake dE_wake];
 
 if fb
     Egain = (E_acc - E0 - wakeloss)/cos(phi);
@@ -25,6 +26,8 @@ else
 end
 
 Erf = Egain*cos(phi + 2*pi*Z/(SI_c/SI_sband));
+rf_shape = Egain*cos(phi + 2*pi*zc_wake/(SI_c/SI_sband));
+rf_out = [zc_wake rf_shape];
 
 E = E + Erf + 1E-3*int_wake;
 
