@@ -12,6 +12,13 @@ function LT_OUTPUT = LiT(beamline,init_beam,init_param,Nbin,show_all,save_img,sa
 %
 %==============================================================================================================
 
+if nargin < 6
+    save_img = 0;
+    save_dir = '';
+    store_all = 0;
+    store_wake = 0;
+end
+
 global beam;
 if init_beam
     beam = zeros(init_param.Nesim,2);

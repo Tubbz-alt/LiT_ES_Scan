@@ -11,8 +11,8 @@ init_beam = 1;
 % for a full list of available parameters)
 param_name = {'NRTL AMPL','LONE DECK'};
 low_limit  = [0.0390,-22.0];
-high_limit = [0.0410,-20.0];
-n_steps    = [20, 20];
+high_limit = [0.0415,-19.5];
+n_steps    = [10, 10];
 nPar       = numel(n_steps);
 
 % create scan values
