@@ -1,4 +1,4 @@
-function LT_OUTPUT = LiT(beamline,init_beam,init_param,Nbin,show_all,save_img,save_dir,store_all)
+function LT_OUTPUT = LiT(beamline,init_beam,init_param,Nbin,show_all,save_img,save_dir,store_all,store_wake)
 %function LT_OUTPUT = LiT(beamline,initialize_beam,init_params,show_all,save_img,save_dir)
 %
 %
@@ -24,14 +24,31 @@ end
 
 % n_el = number of beamline elements
 [n_el,~] = size(beamline);
-if nargin==8 && store_all
+if nargin>=8 && store_all
     evolution = zeros(init_param.Nesim,2,n_el+1);
     evolution(:,:,1) = beam;
     NBs = zeros(1,n_el+1);
     NBs(1) = Nb;
+    E0s = zeros(1,n_el+1);
+    E0s(1) = mean(beam(:,2));
 else
     evolution = [];
     NBs = [];
+    E0s = [];
+end
+
+% store wake calcs
+if nargin==9 && store_wake
+    codes = beamline(:,1);
+    n_wakes = sum(codes == 11);
+    wakes = zeros(Nbin,2,n_wakes);
+    wake_ind = 1;
+    wake_inds = [];
+    rfs = zeros(Nbin,2,n_wakes);
+else
+    wakes = [];
+    rfs = [];
+    wake_inds = [];
 end
 
 if show_all
@@ -52,27 +69,33 @@ for j  = 1:n_el
       
       case 6
           [beam, Nb] = bunch_compressor(beam,Nb,beamline(j,:));
-          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; E0s(j+1) = mean(beam(:,2)); end;
           
       case 11
-          [beam, Nb] = rf_acceleration(beam,Nb,Qp,Nbin,beamline(j,:));
-          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
+          [beam, Nb, wake_out, rf_out] = rf_acceleration(beam,Nb,Qp,Nbin,beamline(j,:));
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; E0s(j+1) = mean(beam(:,2)); end;
+          if store_wake 
+              wakes(:,:,wake_ind) = wake_out; 
+              rfs(:,:,wake_ind) = rf_out; 
+              wake_ind = wake_ind+1; 
+              wake_inds = [wake_inds; j+1];
+          end
           
       case 22
           [beam, Nb] = ISR_energySpread(beam,Nb,beamline(j,:));
-          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; E0s(j+1) = mean(beam(:,2)); end;
           
       case 26
           [beam, Nb] = energy_aperture(beam,Nb,beamline(j,:));
-          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; E0s(j+1) = mean(beam(:,2)); end;
           
       case 28
           [beam, Nb] = notch_collimator(beam,Nb,beamline(j,:));
-          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; E0s(j+1) = mean(beam(:,2)); end;
           
       case 37
           [beam, Nb] = cut_beam_tails(beam,Nb,beamline(j,:));
-          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; end;
+          if store_all; evolution(1:Nb,:,j+1) = beam; NBs(j+1) = Nb; E0s(j+1) = mean(beam(:,2)); end;
           
   end
       
@@ -91,3 +114,7 @@ LT_OUTPUT.BEAM = beam;
 LT_OUTPUT.QP = Qp;
 LT_OUTPUT.EVO = evolution;
 LT_OUTPUT.Nb = NBs;
+LT_OUTPUT.E0 = E0s;
+LT_OUTPUT.Wakes = wakes;
+LT_OUTPUT.RFs = rfs;
+LT_OUTPUT.Inds = wake_inds;
