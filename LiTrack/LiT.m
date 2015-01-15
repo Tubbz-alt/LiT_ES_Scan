@@ -22,7 +22,7 @@ end
 global beam;
 if init_beam
     beam = zeros(init_param.Nesim,2);
-    beam(:,1) = init_Z(init_param.Nesim,init_param.sigz0,init_param.asym,init_param.cut);	% generate asymmetric gaussian with cut at N sigma
+    beam(:,1) = init_Z(init_param.Nesim,init_param.sigz0,init_param.asym,init_param.cut,init_param.z0bar);	% generate asymmetric gaussian with cut at N sigma
     beam(:,2) = init_param.E0*(1+init_param.sigd0*randn(init_param.Nesim,1));               % generate gaussian energy distribution
     Nb = length(beam);
     Ne = init_param.Npart;
@@ -62,6 +62,7 @@ if show_all
     ps.BEAM = beam;
     ps.QP = Qp;
     plot_ps(ps,Nbin,1,1,0,0);
+    pause;
     if save_img
         saveas(gcf,[save_dir 'step_00.eps'],'epsc');
     end
@@ -110,6 +111,7 @@ for j  = 1:n_el
       ps.BEAM = beam;
       ps.QP = Qp;
       plot_ps(ps,Nbin,1,1,0,0);
+      pause;
       if save_img
           saveas(gcf,[save_dir 'step_' num2str(j,'%02d') '.eps'],'epsc');
       end

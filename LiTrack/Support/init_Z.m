@@ -1,4 +1,4 @@
-function x = init_Z(N,xsig,asym,cut)
+function x = init_Z(N,xsig,asym,cut,xbar)
 
 %	x = asym_gaussian(N,xsig,xbar,asym,cut,tail,halo,halo_pop);
 %
@@ -49,4 +49,4 @@ elseif dN < 0
 end
 
 x = x - mean(x);
-x = x*xsig/std(x);
+x = x*xsig/std(x)+xbar;

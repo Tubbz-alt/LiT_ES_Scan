@@ -8,3 +8,4 @@
  SI_eps0 = 8.854187817e-12; % permittivity of free space [F/m]
  SI_mu0  = 4e-7*pi;         % permeability of free space [T*m/A]
  SI_sband = 2856e6;         % SLAC cavity s-band frequency [Hz]
+ SI_sband_k = 2*pi*SI_sband/SI_c; % SLAC cavity s-band wavenumber [1/m]

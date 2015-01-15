@@ -67,6 +67,7 @@
   init_param.E0    = PARAM.ENRG.E0;
   init_param.sigd0 = PARAM.INIT.SIGD0;
   init_param.sigz0 = PARAM.INIT.SIGZ0;
+  init_param.z0bar = PARAM.INIT.Z0BAR;
   init_param.asym  = PARAM.INIT.ASYM;
   init_param.cut   = PARAM.INIT.CUT;
 

@@ -3,6 +3,7 @@ function [beam_out, Nb, wake_out, rf_out] = rf_acceleration(beam_in,Nb,Qp,Nbin,p
 SI_consts;
 
 [Z,ind] = sort(beam_in(:,1));
+Z0 = mean(Z);
 E = beam_in(ind,2);
 E0 = mean(E);
 
@@ -20,13 +21,13 @@ wakeloss = 1E-3*mean(int_wake);                 % mean wake loss [GeV]
 wake_out = [zc_wake dE_wake];
 
 if fb
-    Egain = (E_acc - E0 - wakeloss)/cos(phi);
+    Egain = (E_acc - E0 - wakeloss)/cos(phi+SI_sband_k*Z0);
 else
     Egain = E_acc;
 end
 
-Erf = Egain*cos(phi + 2*pi*Z/(SI_c/SI_sband));
-rf_shape = Egain*cos(phi + 2*pi*zc_wake/(SI_c/SI_sband));
+Erf = Egain*cos(phi + SI_sband_k*Z);
+rf_shape = Egain*cos(phi + SI_sband_k*zc_wake);
 rf_out = [zc_wake rf_shape];
 
 E = E + Erf + 1E-3*int_wake;
