@@ -61,6 +61,7 @@ end
 if show_all
     ps.BEAM = beam;
     ps.QP = Qp;
+    disp(Qp*size(beam,1));
     plot_ps(ps,Nbin,1,1,0,0);
     pause;
     if save_img
@@ -110,6 +111,7 @@ for j  = 1:n_el
   if show_all 
       ps.BEAM = beam;
       ps.QP = Qp;
+      disp(Qp*size(beam,1));
       plot_ps(ps,Nbin,1,1,0,0);
       pause;
       if save_img

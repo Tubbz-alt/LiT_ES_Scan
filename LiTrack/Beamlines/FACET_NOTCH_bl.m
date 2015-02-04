@@ -73,16 +73,16 @@
 
 beamline = [
        11		NRTL_ampl      NRTL_phas     sband      fb_off      NRTL_leff     % Compressor cavity AMPL DR13 13 VDES
-       26	    NRTL_ELO       NRTL_EHI      0          0           0             % Approximate energy acceptance of NRTL
+       26	    NRTL_ELO       NRTL_EHI      E0         0           0             % Approximate energy acceptance of NRTL
         6		NRTL_R56       NRTL_T566     NRTL_U5666 E0          0             % Design NRTL ~0.603, BDES to KMOD for E-164 gives 0.588
        11		E1             LONE_phas     sband      fb_on       LONE_leff     % 2-6, nominal 9GeV, no feedback
         6	    LI10_R56       0             0          E1          no_quad       % 2nd half of the chicane. Design was -0.0745, as built -0.076
        22       LI10_ISR       0             0          0           0             % Approximate SR growth in E-spread from chicane
-       26       LI10_ELO       LI10_EHI      0          0           0             % Momentum Slits in FACET
+       26       LI10_ELO       LI10_EHI      E1         0           0             % Momentum Slits in FACET
        37		cut            0             0          0           0             % Clip any rediculously long tails
        11       E2             LTWO_phas     sband      fb_on       LTWO_leff     % Boost to 20.35
-       28       LI20_NLO       LI20_NHI      0          0           0             % Notch collimate
-       26       LI20_ELO       LI20_EHI      0          0           0             % Momentum Slits in FACET
+       28       LI20_NLO       LI20_NHI      E2         0           0             % Notch collimate
+       26       LI20_ELO       LI20_EHI      E2         0           0             % Momentum Slits in FACET
        6		LI20_R56       LI20_T566     LI20_U5666 E2          0             % FACET 'dogleg' like chicane
        22       LI20_ISR       0             0          0           0             % Approximate SR growth in E-spread from dogleg
        37       cut            0             0          0           0             % Clip any rediculously long tails
