@@ -38,7 +38,7 @@ end
 
 % lit_emax = max(ne);
 % dat_emax = max(yag_spec);
-% yag_spec = (lit_emax/dat_emax)*yag_spec;
+yag_spec = yag_spec/sum(yag_spec);
 
 % normalize to 1
 ne = ne/sum(ne);
